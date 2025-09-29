@@ -46,7 +46,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF1E88FF).withOpacity(0.25),
+                  color: const Color(0xFF1E88FF).withAlpha(64), // updated from withOpacity
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -71,7 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/logo-mola.png',
+                  'assets/images/logo-mola.png', // updated image path
                   height: 80,
                   fit: BoxFit.contain,
                 ),
@@ -79,7 +79,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
                       'Sign Up Now and Unlock the Power of Justduit',
                       style: TextStyle(
@@ -99,7 +99,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withAlpha(13), // updated from withOpacity
                         blurRadius: 16,
                         offset: const Offset(0, 6),
                       ),
@@ -115,7 +115,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         textCapitalization: TextCapitalization.words,
                         decoration: const InputDecoration(
                           hintText: 'Enter your full name',
-                        ),
+                      ),
                       ),
                       const SizedBox(height: 14),
                       requiredLabel('Email Address'),

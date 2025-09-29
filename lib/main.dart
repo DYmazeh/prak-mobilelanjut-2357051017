@@ -1,46 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/dashboard_screen.dart';
 import 'package:myapp/screens/login_screen.dart';
 import 'package:myapp/screens/signup_screen.dart';
 
-void main() => runApp(const JustduitApp());
+void main() {
+  runApp(const MyApp());
+}
 
-class JustduitApp extends StatelessWidget {
-  const JustduitApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Justduit',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF3F6F8), // abu-abu muda
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E88FF)),
+        scaffoldBackgroundColor: const Color(0xFFF3F6F8),
+        primaryColor: const Color(0xFF1E88FF),
         inputDecorationTheme: InputDecorationTheme(
-          isDense: true,
           filled: true,
           fillColor: Colors.white,
+          isDense: true,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           border: OutlineInputBorder(
+            borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(color: Color(0xFF1E88FF)),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),
       initialRoute: LoginScreen.route,
       routes: {
-        '/': (_) => const LoginScreen(), // default = Sign In
-        '/signin': (_) => const LoginScreen(),
-        '/signup': (_) => const SignupScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+        SignupScreen.route: (context) => const SignupScreen(),
+        DashboardScreen.route: (context) => const DashboardScreen(),
       },
     );
   }

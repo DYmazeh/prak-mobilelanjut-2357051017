@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/screens/signup_screen.dart';
+import 'package:myapp/screens/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF1E88FF).withOpacity(0.25),
+                  color: const Color(0xFF1E88FF).withAlpha(64), // updated from withOpacity
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 Image.asset(
-                  'assets/images/logo-mola.png',
+                  'assets/images/logo-mola.png', // updated image path
                   height: 80,
                   fit: BoxFit.contain,
                 ),
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
                       'Hi, Welcome Back to Justduit',
                       style: TextStyle(
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withAlpha(13), // updated from withOpacity
                         blurRadius: 16,
                         offset: const Offset(0, 6),
                       )
@@ -136,10 +137,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 6),
-                      primaryButton('Sign In Now', () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Sign In tapped')));
-                      }),
+
+                      primaryButton(
+                        'Sign In Now',
+                         () {
+                          if (_email.text.isEmpty ||
+                              _pass.text.isEmpty){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Email dan Password tidak boleh kosong!'),
+                              backgroundColor: Colors.red,
+                            ),
+                            );
+                          }else{
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              DashboardScreen.route,
+                              (route) => false,
+                              );
+                          }
+                      },
+                      ),
                       const SizedBox(height: 14),
                       Center(
                         child: TextButton(
