@@ -1,7 +1,11 @@
+
 import 'package:flutter/material.dart';
-import 'package:myapp/screens/dashboard_screen.dart';
-import 'package:myapp/screens/login_screen.dart';
-import 'package:myapp/screens/signup_screen.dart';
+import 'screens/diagnose_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/more_screen.dart';
+import 'screens/my_garden_screen.dart';
+import 'widgets/bottom_nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,32 +17,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Justduit',
+      debugShowCheckedModeBanner: false,
+      title: 'Plant App',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF3F6F8),
-        primaryColor: const Color(0xFF1E88FF),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          isDense: true,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xFF1E88FF)),
-            borderRadius: BorderRadius.circular(12),
-          ),
+        brightness: Brightness.dark,
+        primaryColor: Colors.green,
+        scaffoldBackgroundColor: Colors.black,
+        textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
         ),
       ),
-      initialRoute: LoginScreen.route,
-      routes: {
-        LoginScreen.route: (context) => const LoginScreen(),
-        SignupScreen.route: (context) => const SignupScreen(),
-        DashboardScreen.route: (context) => const DashboardScreen(),
-      },
+      home: const MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  MainScreenState createState() => MainScreenState();
+}
+
+class MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const DiagnoseScreen(),
+    const MyGardenScreen(),
+    const MoreScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(() => _currentIndex = index),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.green,
+        shape: const CircleBorder(), 
+        child: const Icon(Icons.camera_alt),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
