@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/auth_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -97,6 +98,17 @@ class MoreScreen extends StatelessWidget {
                   _buildIdCard('Bird ID', 'Observe & Learn', Icons.flutter_dash, Colors.pink),
                   _buildIdCard('Insect ID', 'Discover & Classi...', Icons.bug_report, Colors.purple),
                 ],
+              ),
+              const SizedBox(height: 24),
+              ListTile(
+                leading: const Icon(Icons.logout, color: Colors.white),
+                title: const Text('Log Out', style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const AuthScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
               ),
             ],
           ),
