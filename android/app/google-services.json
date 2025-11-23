@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "220079051176",
+    "project_id": "loginutp-b73ea",
+    "storage_bucket": "loginutp-b73ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220079051176:android:6e0e3cd65250bd30170d9d",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiSGyFGL2dIrtodmTY6MZdDbANZI4K5pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
